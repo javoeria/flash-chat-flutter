@@ -39,9 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 48.0,
-              ),
+              SizedBox(height: 48.0),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
@@ -50,9 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
               ),
-              SizedBox(
-                height: 8.0,
-              ),
+              SizedBox(height: 8.0),
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.center,
@@ -61,27 +57,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password'),
               ),
-              SizedBox(
-                height: 24.0,
-              ),
+              SizedBox(height: 24.0),
               RoundedButton(
                 title: 'Log In',
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
-                  setState(() {
-                    showSpinner = true; 
-                  });
+                  setState(() => showSpinner = true);
                   try {
                     final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
                     if (user != null) {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
-                    setState(() {
-                      showSpinner = false; 
-                    });
                   } catch (e) {
                     print(e);
                   }
+                  setState(() => showSpinner = false);
                 },
               ),
             ],

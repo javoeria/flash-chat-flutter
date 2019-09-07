@@ -39,9 +39,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 48.0,
-              ),
+              SizedBox(height: 48.0),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
@@ -50,9 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
               ),
-              SizedBox(
-                height: 8.0,
-              ),
+              SizedBox(height: 8.0),
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.center,
@@ -61,27 +57,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password'),
               ),
-              SizedBox(
-                height: 24.0,
-              ),
+              SizedBox(height: 24.0),
               RoundedButton(
                 title: 'Register',
                 colour: Colors.blueAccent,
                 onPressed: () async {
-                  setState(() {
-                    showSpinner = true; 
-                  });
+                  setState(() => showSpinner = true);
                   try {
                     final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
                     if (newUser != null) {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
-                    setState(() {
-                      showSpinner = false; 
-                    });
                   } catch (e) {
                     print(e);
                   }
+                  setState(() => showSpinner = false);
                 },
               ),
             ],
